@@ -134,7 +134,7 @@
 </dialog>
 
 <dialog class="mdl-dialog" id="dialogUpdatePhone">
-  <form #newForm="ngForm" (ngSubmit)="updatePhone(newForm)">
+  <form #newForm="ngForm" (ngSubmit)="updatePhone()">
     <h4 class="mdl-dialog__title">Update Phone</h4>
     <div class="mdl-dialog__content">
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -150,7 +150,7 @@
 </dialog>
 
 <dialog class="mdl-dialog" id="dialogAddPhone">
-  <form #newForm="ngForm" (ngSubmit)="addPhoneNumber(newForm)">
+  <form #newForm="ngForm" (ngSubmit)="addPhoneNumber()">
     <h4 class="mdl-dialog__title" style="text-align: center">Add New Phone</h4>
     <div class="mdl-dialog__content">
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">

@@ -8,7 +8,7 @@ import { AuthService } from '../../../services/auth.service';
   styleUrls: ['./email.component.css']
 })
 export class EmailComponent implements OnInit {
-  @ViewChild('formData') form: any;
+  @ViewChild('formData') form: any; email: any; password: any
   constructor(private _auth: AuthService, private router: Router) { }
 
   ngOnInit() {

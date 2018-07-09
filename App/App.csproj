@@ -129,13 +129,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Bundles\3rdpartylicenses.txt" />
+    <Content Include="Bundles\assets\background.jpg" />
+    <Content Include="Bundles\assets\background1.jpg" />
+    <Content Include="Bundles\assets\google.jpg" />
     <Content Include="Bundles\favicon.ico" />
     <Content Include="Bundles\index.html" />
-    <Content Include="Bundles\main.js" />
-    <Content Include="Bundles\polyfills.js" />
-    <Content Include="Bundles\runtime.js" />
-    <Content Include="Bundles\styles.js" />
-    <Content Include="Bundles\vendor.js" />
+    <Content Include="Bundles\main.58dcc3361cd17e44eae6.js" />
+    <Content Include="Bundles\polyfills.7a0e6866a34e280f48e7.js" />
+    <Content Include="Bundles\runtime.a66f828dca56eeb90e02.js" />
+    <Content Include="Bundles\scripts.158a8b0e0e36c953f57d.js" />
+    <Content Include="Bundles\styles.3ba6c6c05b5e14dc5732.css" />
     <Content Include="ClientApp\.gitignore" />
     <Content Include="ClientApp\src\app\app.component.css" />
     <Content Include="ClientApp\src\app\app.component.html" />
@@ -155,7 +158,9 @@
       <DependentUpon>DataModel.edmx</DependentUpon>
       <LastGenOutput>DataModel.cs</LastGenOutput>
     </Content>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -204,11 +209,6 @@
     <Content Include="ClientApp\README.md" />
     <Content Include="ClientApp\tsconfig.json" />
     <Content Include="ClientApp\tslint.json" />
-    <Content Include="Bundles\main.js.map" />
-    <Content Include="Bundles\polyfills.js.map" />
-    <Content Include="Bundles\runtime.js.map" />
-    <Content Include="Bundles\styles.js.map" />
-    <Content Include="Bundles\vendor.js.map" />
     <EntityDeploy Include="Models\DataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DataModel.Designer.cs</LastGenOutput>
@@ -218,6 +218,9 @@
     </Content>
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="SQL\GHICRM.bak" />
+    <Content Include="Presentation\GHI CRM.pptx" />
+    <Content Include="README.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

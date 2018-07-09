@@ -4,7 +4,15 @@
 
 export const environment = {
   production: false,
-  apiServer: 'http://localhost:59108/api/contacts/'
+  apiServer: 'http://localhost:59108/api/contacts/',
+  firabaseconfig: {
+    apiKey: "",
+    authDomain: "",
+    databaseURL: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: ""
+  }
 };
 
 /*

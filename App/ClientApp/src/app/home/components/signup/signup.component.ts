@@ -10,7 +10,7 @@ import { AuthService } from '../../../services/auth.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  @ViewChild('formData') form: any;
+  @ViewChild('formData') form: any; email: any; password: any;
   constructor(private _auth: AuthService, private fbAuth: AngularFireAuth, private router: Router) {
     this.fbAuth.user.subscribe(user => {
       console.log(user)

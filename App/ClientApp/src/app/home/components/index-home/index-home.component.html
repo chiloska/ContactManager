@@ -76,30 +76,60 @@
       <section id="contact" class="mdl-cell mdl-cell--12-col ">
         <div class="mdl-grid">
           <div class="mdl-cell mdl-cell--4-col"></div>
-          <div class="mdl-cell mdl-cell--4-col">
+          <div class="mdl-cell mdl-cell--6-col">
             <h1 class="text-align:center; color:#9A9A9A">Keep in touch?</h1>
             <div class="mdl-card mdl-shadow--2dp">
+              <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__supporting-text">
+                  <form action="#">
+                    <div id="name">
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="first">
+                        <label class="mdl-textfield__label" for="sample3">First Name</label>
+                      </div>
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="last">
+                        <label class="mdl-textfield__label" for="sample3">Last Name</label>
+                      </div>
+                    </div>
 
+                    <div id="contact">
+                      <div id="phone">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                          <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="mobile">
+                          <label class="mdl-textfield__label" for="sample2">Mobile Phone</label>
+                          <span class="mdl-textfield__error">Mobile must be a number!</span>
+                        </div>
+                      </div>
+
+                      <div id="email">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                          <input class="mdl-textfield__input" type="email">
+                          <label class="mdl-textfield__label" for="sample2">E-mail</label>
+                          <span class="mdl-textfield__error">Enter a valid email!</span>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
-      <section id="footer" class="mdl-cell mdl-cell--12-col">
-        <footer class="mdl-mini-footer">
-          <div class="mdl-mini-footer__left-section">
-            <div class="mdl-logo">Title</div>
-            <ul class="mdl-mini-footer__link-list">
-              <li>
-                <a href="#">Help</a>
-              </li>
-              <li>
-                <a href="#">Privacy & Terms</a>
-              </li>
-            </ul>
-          </div>
-        </footer>
-      </section>
-
     </div>
+    <footer class="mdl-mini-footer">
+      <div class="mdl-mini-footer__left-section">
+        <div class="mdl-logo">Title</div>
+        <ul class="mdl-mini-footer__link-list">
+          <li>
+            <a href="#">Help</a>
+          </li>
+          <li>
+            <a href="#">Privacy & Terms</a>
+          </li>
+        </ul>
+      </div>
+    </footer>
   </main>
 </div>

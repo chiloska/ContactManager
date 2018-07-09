@@ -15,15 +15,16 @@ import { AuthService } from './services/auth.service';
 import { AcccesGuardService } from './services/accces-guard.service';
 import { DataService } from './services/data.service';
 
+import { environment } from '../environments/environment';
 
-export const config = {
-  apiKey: "AIzaSyDMOMlwMEae32k3gb1Q0p3HFPGmyL5p6fU",
-  authDomain: "learfirebase101.firebaseapp.com",
-  databaseURL: "https://learfirebase101.firebaseio.com",
-  projectId: "learfirebase101",
-  storageBucket: "learfirebase101.appspot.com",
-  messagingSenderId: "536944026455"
-};
+// export const config = {
+//   apiKey: "AIzaSyDMOMlwMEae32k3gb1Q0p3HFPGmyL5p6fU",
+//   authDomain: "learfirebase101.firebaseapp.com",
+//   databaseURL: "https://learfirebase101.firebaseio.com",
+//   projectId: "learfirebase101",
+//   storageBucket: "learfirebase101.appspot.com",
+//   messagingSenderId: "536944026455"
+// };
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ export const config = {
     DashboardModule,
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(config), AngularFireAuthModule, AngularFirestoreModule
+    AngularFireModule.initializeApp(environment.firabaseconfig), AngularFireAuthModule, AngularFirestoreModule
   ],
   providers: [AuthService, AcccesGuardService, DataService],
   bootstrap: [AppComponent]
