@@ -1,0 +1,192 @@
+<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header page-content">
+  <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+    <div class="mdl-layout__header-row">
+      <span class="mdl-layout-title">Home</span>
+      <div class="mdl-layout-spacer"></div>
+      <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
+        <i class="material-icons">search</i>
+      </label>
+      <div class="">
+        <input class="mdl-textfield__input" type="text" id="search" (keyup)="getContactByName()" [(ngModel)]="findName" name="findName">
+        <label class="mdl-textfield__label" for="search" aria-placeholder="Find Contact"></label>
+      </div>
+      <button (click)="newContactDialog()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
+        <i class="material-icons">add</i>
+      </button>
+    </div>
+  </header>
+  <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+    <header class="demo-drawer-header" style="margin-top: 20px; margin-bottom: 20px; text-align: center;">
+      <img src="{{user.photoURL}}" class="demo-avatar">
+      <div class="demo-avatar-dropdown">
+        <span>{{user.email}}</span>
+        <div class="mdl-layout-spacer"></div>
+      </div>
+    </header>
+    <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+      <a class="mdl-navigation__link" routerLink="/dashboard">
+        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
+      <a class="mdl-navigation__link" (click)="logout()">
+        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings_power</i>Logout</a>
+    </nav>
+  </div>
+  <main class="mdl-layout__content mdl-color--grey-100 page-content">
+    <div class="mdl-grid demo-content">
+      <div *ngFor="let contact of contacts" class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
+        <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
+          <div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
+            <div class="mdl-grid" style="margin: 0px;width: 100%;">
+              <div class="mdl-cell--4-col">
+                <img class="demo-avatar" src="http://firstaidertraining.org.uk/wp-content/uploads/2017/09/anon.png" />
+              </div>
+              <div class="mdl-cell--8-col">
+                <h4 class="mdl-card__title-text">{{contact.firstName}} {{contact.lastName}}</h4>
+              </div>
+            </div>
+          </div>
+          <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+            <div *ngFor="let phone of contact.phones; let i=index">
+              <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--8-col">
+                  <i></i>Phone: {{phone.number}}
+                </div>
+                <div class="mdl-cell mdl-cell--4-col">
+                  <i (click)="updatePhoneDialog(phone)" class="material-icons" style="font-size: 18px; text-align: right; padding-right: 10px;">edit</i>
+                  <i (click)="deletePhoneDialog(phone, i)" class="material-icons" style="font-size: 18px; text-align: right;">remove_circle_outline</i>
+                </div>
+              </div>
+            </div>
+            <button (click)="addNewPhoneDialog(contact.contactId)" class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-button--micro-fab mdl-color--accent"
+              data-upgraded=",MaterialButton,MaterialRipple">
+              <i class="material-icons mdl-color-text--white" role="presentation">add</i>
+              <span class="visuallyhidden">add</span>
+              <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple is-animating" style="width: 160.392px; height: 160.392px; transform: translate(-50%, -50%) translate(26px, 41px);"></span>
+              </span>
+            </button>
+          </div>
+          <div class="mdl-card__actions mdl-card--border">
+            <button (click)="editContactDialog(contact.contactId)" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored">Edit</button>
+            <button (click)="deleteContactDialog(contact.contactId)" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div id="demo-snackbar-example" class="mdl-js-snackbar mdl-snackbar">
+  <div class="mdl-snackbar__text">{{snackBarMess}}</div>
+  <button class="mdl-snackbar__action" type="button"></button>
+</div>
+
+<dialog class="mdl-dialog" id="dialogEdit">
+  <form #newForm="ngForm" (ngSubmit)="editContact(newForm)">
+    <h4 class="mdl-dialog__title">Update Info</h4>
+    <div class="mdl-dialog__content">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input placeholder="First Name" class="mdl-textfield__input" type="text" id="newFirstName" [(ngModel)]="newContact.firstName"
+          name="firstName" required>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input placeholder="Last Name" class="mdl-textfield__input" type="text" id="newLastName" [(ngModel)]="newContact.lastName"
+          name="lastName" required>
+      </div>
+    </div>
+    <div class="mdl-dialog__actions">
+      <button type="submit" class="mdl-button" id="save">Update</button>
+      <button type="button" class="mdl-button close" id="cancelNew" (click)="cancelDialog('update')">Cancel</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog class="mdl-dialog" id="dialogNew">
+  <form #newForm="ngForm" (ngSubmit)="createContact(newForm)">
+    <h4 class="mdl-dialog__title">New Contact</h4>
+    <div class="mdl-dialog__content">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input placeholder="First Name" class="mdl-textfield__input" type="text" id="newFirstName" [(ngModel)]="newContact.firstName"
+          name="firstName" required>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input placeholder="Last Name" class="mdl-textfield__input" type="text" id="newLastName" [(ngModel)]="newContact.lastName"
+          name="lastName" required>
+      </div>
+      <div *ngFor="let newPhone of newContact.phones; let i=index" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        {{newContact.phones[i].number}}
+        <a style="margin-left: 70px;" (click)="removeNumber(i)" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+          <i class="material-icons">clear</i>
+        </a>
+      </div>
+      <div>
+        <input style="margin-left: 50px; width: 180px;" placeholder="123-123-1234" class="mdl-textfield__input" type="text" [(ngModel)]="newPhone.number"
+          name="number" pattern="\d{3}[\-]\d{3}[\-]\d{4}" required>
+        <a (click)="addNumber(newPhone.number)" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+          <i class="material-icons">add</i>
+        </a>
+      </div>
+    </div>
+    <div class="mdl-dialog__actions">
+      <button type="submit" class="mdl-button" id="save">Save</button>
+      <button type="button" class="mdl-button close" id="cancelNew" (click)="cancelDialog('new')">Cancel</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog class="mdl-dialog" id="dialogUpdatePhone">
+  <form #newForm="ngForm" (ngSubmit)="updatePhone(newForm)">
+    <h4 class="mdl-dialog__title">Update Phone</h4>
+    <div class="mdl-dialog__content">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input style="margin-left: 50px; width: 180px;" placeholder="123-123-1234" class="mdl-textfield__input" type="text" [(ngModel)]="updatePhoneRecord.number"
+          name="number" pattern="\d{3}[\-]\d{3}[\-]\d{4}" required>
+      </div>
+    </div>
+    <div class="mdl-dialog__actions">
+      <button type="submit" class="mdl-button" id="save">Update</button>
+      <button type="button" class="mdl-button close" id="cancelNew" (click)="cancelDialog('phoneUpdate')">Cancel</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog class="mdl-dialog" id="dialogAddPhone">
+  <form #newForm="ngForm" (ngSubmit)="addPhoneNumber(newForm)">
+    <h4 class="mdl-dialog__title" style="text-align: center">Add New Phone</h4>
+    <div class="mdl-dialog__content">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input style="margin-left: 50px; width: 180px;" placeholder="123-123-1234" class="mdl-textfield__input" type="text" [(ngModel)]="newPhone.number"
+          name="number" pattern="\d{3}[\-]\d{3}[\-]\d{4}" required>
+      </div>
+    </div>
+    <div class="mdl-dialog__actions">
+      <button type="submit" class="mdl-button" id="save">Add</button>
+      <button type="button" class="mdl-button close" id="cancelNew" (click)="cancelDialog('addPhone')">Cancel</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog class="mdl-dialog" id="dialogDeletePhone">
+  <h4 class="mdl-dialog__title">Are you sure?</h4>
+  <div class="mdl-dialog__content">
+    <p style="text-align: center">
+      Agree to delete the Phone Number
+    </p>
+  </div>
+  <div class="mdl-dialog__actions">
+    <button type="button" class="mdl-button" (click)="deletePhoneNumber()">Agree</button>
+    <button type="button" class="mdl-button close" (click)="cancelDialog('phoneDelete')">Disagree</button>
+  </div>
+</dialog>
+
+<dialog class="mdl-dialog" id="dialogDeleteContact">
+  <h4 class="mdl-dialog__title">Are you sure?</h4>
+  <div class="mdl-dialog__content">
+    <p style="text-align: center">
+      We will delete this contact from your list. After you Agree, there's no turn back!
+    </p>
+  </div>
+  <div class="mdl-dialog__actions">
+    <button type="button" class="mdl-button" (click)="deleteContact()">Agree</button>
+    <button type="button" class="mdl-button close" (click)="cancelDialog('contactDelete')">Disagree</button>
+  </div>
+</dialog>

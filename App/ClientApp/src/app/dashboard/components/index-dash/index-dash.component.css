@@ -1,0 +1,13 @@
+.demo-avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 24px;
+  }
+
+  .page-content{height:100vh; background:#ff0000;}
+  
+  .mdl-button--fab.mdl-button--micro-fab {
+    height: 30px;
+    min-width: 30px;
+    width: 30px;
+}

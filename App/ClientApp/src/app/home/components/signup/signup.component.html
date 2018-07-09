@@ -1,0 +1,27 @@
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col">
+    <div class="mdl-card mdl-shadow--2dp form-container">
+      <a routerLink="/login" id="goback">Go back</a>
+      <br />
+      <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text" style="font-size: 48px;">
+          <i class="material-icons md-48">
+            email
+          </i>
+          SIGN UP
+        </h2>
+      </div>
+      <div class="mdl-card__supporting-text">
+        <form #formData="ngForm" (ngSubmit)="create(formData)">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input placeholder="Email" class="mdl-textfield__input" type="text" id="email" (ngModel)="email" name="email" required>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input placeholder="Password" class="mdl-textfield__input" type="password" id="password" (ngModel)="password" name="password" required>
+          </div>
+          <input type="submit" [disabled]="!formData.valid" class="mdl-button mdl-js-button mdl-button--raised">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

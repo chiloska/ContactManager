@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GHICRMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="t_CRM_Contacts">
+          <Key>
+            <PropertyRef Name="ContactId" />
+          </Key>
+          <Property Name="ContactId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FistName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserUid" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_CRM_Phones">
+          <Key>
+            <PropertyRef Name="PhoneId" />
+          </Key>
+          <Property Name="PhoneId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="ContactId" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_t_CRM_Phones_t_CRM_Contacts">
+          <End Role="t_CRM_Contacts" Type="Self.t_CRM_Contacts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="t_CRM_Phones" Type="Self.t_CRM_Phones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_CRM_Contacts">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="t_CRM_Phones">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GHICRMModelStoreContainer">
+          <EntitySet Name="t_CRM_Contacts" EntityType="Self.t_CRM_Contacts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_CRM_Phones" EntityType="Self.t_CRM_Phones" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_t_CRM_Phones_t_CRM_Contacts" Association="Self.FK_t_CRM_Phones_t_CRM_Contacts">
+            <End Role="t_CRM_Contacts" EntitySet="t_CRM_Contacts" />
+            <End Role="t_CRM_Phones" EntitySet="t_CRM_Phones" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GHICRMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="t_CRM_Contacts">
+          <Key>
+            <PropertyRef Name="ContactId" />
+          </Key>
+          <Property Name="ContactId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FistName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserUid" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="t_CRM_Phones" Relationship="Self.FK_t_CRM_Phones_t_CRM_Contacts" FromRole="t_CRM_Contacts" ToRole="t_CRM_Phones" />
+        </EntityType>
+        <EntityType Name="t_CRM_Phones">
+          <Key>
+            <PropertyRef Name="PhoneId" />
+          </Key>
+          <Property Name="PhoneId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ContactId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="t_CRM_Contacts" Relationship="Self.FK_t_CRM_Phones_t_CRM_Contacts" FromRole="t_CRM_Phones" ToRole="t_CRM_Contacts" />
+        </EntityType>
+        <Association Name="FK_t_CRM_Phones_t_CRM_Contacts">
+          <End Role="t_CRM_Contacts" Type="Self.t_CRM_Contacts" Multiplicity="1" />
+          <End Role="t_CRM_Phones" Type="Self.t_CRM_Phones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_CRM_Contacts">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="t_CRM_Phones">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GHICRMEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="t_CRM_Contacts" EntityType="Self.t_CRM_Contacts" />
+          <EntitySet Name="t_CRM_Phones" EntityType="Self.t_CRM_Phones" />
+          <AssociationSet Name="FK_t_CRM_Phones_t_CRM_Contacts" Association="Self.FK_t_CRM_Phones_t_CRM_Contacts">
+            <End Role="t_CRM_Contacts" EntitySet="t_CRM_Contacts" />
+            <End Role="t_CRM_Phones" EntitySet="t_CRM_Phones" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GHICRMModelStoreContainer" CdmEntityContainer="GHICRMEntities">
+          <EntitySetMapping Name="t_CRM_Contacts">
+            <EntityTypeMapping TypeName="GHICRMModel.t_CRM_Contacts">
+              <MappingFragment StoreEntitySet="t_CRM_Contacts">
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+                <ScalarProperty Name="FistName" ColumnName="FistName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="UserUid" ColumnName="UserUid" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_CRM_Phones">
+            <EntityTypeMapping TypeName="GHICRMModel.t_CRM_Phones">
+              <MappingFragment StoreEntitySet="t_CRM_Phones">
+                <ScalarProperty Name="PhoneId" ColumnName="PhoneId" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

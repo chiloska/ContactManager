@@ -1,0 +1,27 @@
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col">
+    <div class="mdl-card mdl-shadow--2dp form-container">
+        <a routerLink="/" id="goback">Go back</a>
+        <br />
+      <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text" style="font-size: 48px;">
+          <i class="material-icons md-48">
+            lock
+          </i>
+          LOGIN
+        </h2>
+      </div>
+      <div class="mdl-card__supporting-text">
+        <button class="mdl-button mdl-js-button mdl-button--raised google btnpadding" (click)="googleLogin()">
+          <img style="width: 20px;height: 20px;" src="https://cdn4.iconfinder.com/data/icons/new-google-logo-2015/400/new-google-favicon-512.png"> Login with Google</button>
+        <button class="mdl-button mdl-js-button mdl-button--raised google btnpadding" routerLink="/email">
+          <i class="material-icons">
+            email
+          </i> Login with Email</button>
+      </div>
+      <div style="text-align: center;">
+          <a routerLink="/signup" >Don't have an account?</a>
+      </div>
+    </div>
+  </div>
+</div>

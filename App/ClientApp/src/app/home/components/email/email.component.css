@@ -1,0 +1,11 @@
+.form-container {
+    background:white;
+    padding:3.5em;
+    width:400px;
+    position:fixed;
+    left:50%;
+    margin-left:-150px;
+}
+
+
+.material-icons.md-48 { font-size: 48px; }
